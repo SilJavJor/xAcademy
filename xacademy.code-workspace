@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "C:/Desarrollos/NET/Tecnologico/MiCurso2022"
+		},
+		{
+			"path": "C:/Desarrollos/JuacaxDevJuniors/JuacaxDevJuniorsFE"
+		},
+		{
+			"path": "../POLO-MC/WEB"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "WEB"
+	}
+}
