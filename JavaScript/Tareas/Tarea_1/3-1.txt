@@ -1,0 +1,78 @@
+class Producto {
+  constructor(nombre, precio) {
+    this.nombre = nombre;
+    this.precio = precio;
+  }
+}
+
+class Carrito {
+  constructor() {
+    this.montoTotal = 0;
+    this.productos = [];
+  }
+
+  agregarProducto(producto) {
+    this.productos.push(producto);
+    this.montoTotal += producto.precio;
+  }
+
+  eliminarProducto(producto) {
+    const index = this.productos.findIndex((p) => p.nombre === producto.nombre);
+    if (index !== -1) {
+      this.productos.splice(index, 1);
+      this.montoTotal -= producto.precio;
+    }
+  }
+
+  calcularTotal() {
+    return this.montoTotal;
+  }
+}
+
+const carrito = new Carrito();
+const leche = new Producto("Leche", 10);
+
+carrito.agregarProducto(leche);
+console.log(carrito.calcularTotal()); // 10
+
+
+
+
+
+class Carrito {
+  constructor(montoTotal = 0, productos = []) {
+    this.montoTotal = montoTotal;
+    this.productos = productos;
+  }
+
+  agregarProducto(producto) {
+    this.productos.push(producto);
+    this.montoTotal += producto.precio;
+  }
+
+  eliminarProducto(producto) {
+    const index = this.productos.findIndex((p) => p.nombre === producto.nombre);
+    if (index !== -1) {
+      this.productos.splice(index, 1);
+      this.montoTotal -= producto.precio;
+    }
+  }
+}
+
+class Producto {
+  constructor(nombre, precio) {
+    this.nombre = nombre;
+    this.precio = precio;
+  }
+}
+
+// Crear un nuevo carrito
+const carrito = new Carrito(10, [new Producto("Leche", 10)]);
+
+// Agregar un producto
+carrito.agregarProducto(new Producto("Pan", 5));
+
+// Eliminar un producto
+carrito.eliminarProducto(new Producto("Leche", 10));
+
+console.log(carrito); // Carrito { montoTotal: 5, productos: [Producto { nombre: 'Pan', precio: 5 }] }
