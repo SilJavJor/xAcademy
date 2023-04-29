@@ -12,13 +12,15 @@ class Carrito {
   }
 }
 
-// Aca debo ver d egenerar la clase vacia
-let carrito = new Carrito(0, [""]);
-
-// Se agrega un producto al carrito
-carrito.AgregarProducto("Leche", 10, 1);
-console.log(carrito);
+// Se inicializa y agrega un producto al carrito
+let carrito = new Carrito(10, ["Leche"]);
 
 // Se agrega un producto distinto al carrito
 carrito.AgregarProducto("Azucar", 5, 2);
+
+// Se agrega un producto distinto al carrito
+carrito.AgregarProducto("Harina", 7.32, 3);
+
+// Se agrega un producto distinto al carrito
+carrito.AgregarProducto("Pan", 2.5, 3);
 console.log(carrito);
