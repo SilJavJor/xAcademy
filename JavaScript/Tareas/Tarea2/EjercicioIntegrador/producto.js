@@ -26,7 +26,6 @@ class Producto {
       } else {
           this.stock = 10;
       }
-
     }
 }
 

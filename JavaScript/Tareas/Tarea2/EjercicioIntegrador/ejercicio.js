@@ -1,6 +1,6 @@
 // Cada producto que vende el super es creado con esta clase
+
 // Esto se podria llevar a un archivo independiente producto.js
-/*
 class Producto {
     sku;            // Identificador único del producto
     nombre;         // Su nombre
@@ -24,21 +24,8 @@ class Producto {
       } else {
           this.stock = 10;
       }
-
     }
 }
-*/
-// export default Producto;
-
-// Antes de utilizar los productos importar el archivo producto.js
-// Esto iria en el principal
-// import Producto from './producto.js';
-// Mover a un directorio de js
-// Importa la clase Producto para poder utilizarlo
-//import { Producto } from './producto.js';
-//const Producto = require('./producto.js');
-//import { Producto } from './producto.js';
-import Producto from './producto';
 
 // Creo todos los productos que vende mi super
 const queso = new Producto('KS944RUR', 'Queso', 10, 'lacteos', 4);
