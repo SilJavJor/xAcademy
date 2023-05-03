@@ -1,52 +1,67 @@
 // Crea la clase Carrito 
 // Al contruotor se le pasan los valores moto total y producto
 class Carrito {
-  constructor(montoTotal, productos) {
-    this.montoTotal = montoTotal;
-    this.productos = productos;
+  constructor(totalAmount = 0, products = []) {
+    this.totalAmount = totalAmount;
+    this.products = products;
   }
   
-  AgregarProducto(nombre, precio, unidades) {
-//    this.productos.push(nombre);
-//    this.montoTotal += precio * unidades;
-    let producto = { nombre, precio, unidades };
-    let busqueda = this.BuscarProducto(nombre);
-
-    if (busqueda.existe) {
-//      console.log(`Ya existe ${nombre} con ${this.productos[busqueda.index].unidades} unidades`);
-      console.log(`Ya existe ${nombre} con ${this.productos[busqueda.index].unidades} unidades`);
+  agregarProducto(name, price, units) {
+    // Buscar si el producto ya existe en el carrito
+    const existsProduct = this.products.find((product) => product.name === name);
+    
+    if (existsProduct) {
+      // Si el producto ya existe, imprimir un mensaje y no hacer nada más
+      console.log(`Ya existe ${name} con ${existsProduct.units} unidades`);
     } else {
-      this.productos.push(producto);
-      this.montoTotal += precio * unidades;
+      // Si el producto no existe, crear un nuevo objeto y se agrega al carrito
+      let product = {name, price, units};
+      this.products.push(product);
+
+      // Actualizar el monto total del carrito sumando el precio del producto por la cantidad de unidades
+      this.totalAmount += price * units;
     }
+ 
+    //if (buscarProducto(name) === null) {
+      // Si el producto no existe, crear un nuevo objeto y se agrega al carrito
+    //  let product = {name, price, units};
+    //  this.products.push(product);
+
+      // Actualizar el monto total del carrito sumando el precio del producto por la cantidad de unidades
+    //  this.totalAmount += price * units;
+    //}
   }
-  
-  BuscarProducto(nombre) {
-    let existe = Boolean;
-
-    for (let indice = 0; indice < this.productos.length; indice++) {
-      if (this.productos[indice].nombre === nombre) {
-        return { existe: true, index: indice };
-      }
+ 
+  buscarProducto(name) {
+    // Buscar si el producto ya existe en el carrito
+    const existsProduct = this.products.find((product) => product.name === name);
+    
+    if (existsProduct) {
+      // Si el producto ya existe, imprimir un mensaje y no hacer nada más
+      console.log(`Ya existe ${name} con ${existsProduct.units} unidades`);
+      // return
     }
 
-    return { existe: false };
+    return existsProduct;
   }
 }
 
-// Se inicializa y agrega un producto al carrito
-let carrito = new Carrito(10, ["Leche"], 1);
+// Se crea el carrito  -->  Objeto  -->  Vacio
+let carrito = new Carrito();
 
-// Se agrega un producto distinto al carrito
-carrito.AgregarProducto("Azucar", 5, 2);
+// Se agregan distintos productos al carrito
+carrito.agregarProducto("Leche", 10, 1);
 
-carrito.AgregarProducto("Harina", 7.32, 3);
+carrito.agregarProducto("Azucar", 5, 2);
 
-carrito.AgregarProducto("Pan", 2.5, 3);
+carrito.agregarProducto("Harina", 7.32, 3);
 
-carrito.AgregarProducto("Azucar", 5, 2);
+carrito.agregarProducto("Pan", 2.5, 3);
 
-// Se agrega un producto distinto al carrito
+carrito.agregarProducto("Azucar", 5, 2);
+
 console.log(carrito);
-console.log(`Monto total: ${carrito.montoTotal}`);
-//console.log(`Productos: ${carrito.productos}`);
+console.log(`Monto total: ${carrito.totalAmount}`);
+
+// Hay que recorrer con un for
+//console.log(`Productos: ${carrito.products.name}`);
