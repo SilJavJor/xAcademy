@@ -35,7 +35,10 @@ class Producto {
 // import Producto from './producto.js';
 // Mover a un directorio de js
 // Importa la clase Producto para poder utilizarlo
-import Producto from 'producto.js';
+//import { Producto } from './producto.js';
+//const Producto = require('./producto.js');
+//import { Producto } from './producto.js';
+import Producto from './producto';
 
 // Creo todos los productos que vende mi super
 const queso = new Producto('KS944RUR', 'Queso', 10, 'lacteos', 4);

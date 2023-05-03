@@ -1,7 +1,8 @@
 // Producto.js
 // Cada producto que vende el super es creado con esta clase
+//export class Producto {
 class Producto {
-//export default class Producto {
+        //export default class Producto {
     sku;            // Identificador único del producto
     nombre;         // Su nombre
     categoria;      // Categoría a la que pertenece este producto
@@ -29,7 +30,9 @@ class Producto {
     }
 }
 
-export default Producto;
+//export default Producto;
+
+module.exports = Producto;
 
 
 
