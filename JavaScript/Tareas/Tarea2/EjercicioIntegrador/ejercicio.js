@@ -1,5 +1,4 @@
 // Cada producto que vende el super es creado con esta clase
-
 // Esto se podria llevar a un archivo independiente producto.js
 class Producto {
     sku;            // Identificador único del producto
@@ -15,11 +14,6 @@ class Producto {
         this.precio = precio;
 
         // Si no me definen stock, pongo 10 por default
-        //if (stock) {
-        //    this.stock = stock;
-        //} else {
-        //    this.stock = 10;
-        //}
         if ((stock === undefined) || (stock === null) || (stock === '') || (stock === 0)) {
             this.stock = 10;
         } else {
@@ -27,6 +21,8 @@ class Producto {
         }
     }
 }
+
+//import { Producto } from './producto.js';
 
 // Creo todos los productos que vende mi super
 const queso = new Producto('KS944RUR', 'Queso', 10, 'lacteos', 4);
@@ -55,22 +51,39 @@ class Carrito {
         this.precioTotal = 0;
     }
 
-    /**
-     * función que agrega @{cantidad} de productos con @{sku} al carrito
-     */
+    /*
+    * función que agrega @{cantidad} de productos con @{sku} al carrito
+    */
     async agregarProducto(sku, cantidad) {
-        console.log(`Agregando SKU ${sku} Cantida ${cantidad} `);
+        if ((sku !== undefined) || (sku !== null) || (sku !== '') || (sku !== 0)) {
+            if ((cantidad !== undefined) || (cantidad !== null) || (cantidad !== '') || (cantidad !== 0)) {
+//                if (sku in productos) {
+//                    this.productos[sku].cantidad += cantidad;
+                    //this.precioTotal = this.precioTotal + this.productos[sku].precio * this.productos[sku].cantidad);
+//                  } else {
+                    // Busco el producto en la "base de datos"
+                    console.log(`Buscando producto ${sku}`);
+                    const producto = await findProductBySku(sku);
 
-        // Busco el producto en la "base de datos"
-        const producto = await findProductBySku(sku);
+                    if (producto) {
+                        console.log("Producto encontrado", producto);
+                    }
+                    
+                    // Agrego el producto
+                    console.log(`Agregando producto ${sku} cantidad ${cantidad}`);
 
-        console.log("Producto encontrado", producto);
-
-        // Creo un producto nuevo
-        const nuevoProducto = new ProductoEnCarrito(sku, producto.nombre, cantidad);
-        this.productos.push(nuevoProducto);
-        this.precioTotal = this.precioTotal + (producto.precio * cantidad);
-        this.categorias.push(producto.categoria);
+                    // Creo un producto nuevo
+                    const nuevoProducto = new ProductoEnCarrito(sku, producto.nombre, cantidad);
+                    this.productos.push(nuevoProducto);
+                    this.precioTotal = this.precioTotal + (producto.precio * cantidad);
+                    this.categorias.push(producto.categoria);
+//                }
+            } else {
+                console.log("La cantidad debe ser mayor a cero");
+            }
+        } else {
+            console.log("El SKU no puede estar vacio");
+        }
     }
 }
 
@@ -95,7 +108,7 @@ function findProductBySku(sku) {
             if (foundProduct) {
                 resolve(foundProduct);
             } else {
-                reject(`Product ${sku} not found`);
+                reject(`Producto ${sku} no encontrado`);
             }
         }, 1500);
     });
@@ -105,7 +118,7 @@ const carrito = new Carrito();
 carrito.agregarProducto('WE328NJ', 2);
 carrito.agregarProducto('KS944RUR', 10);
 carrito.agregarProducto('WE328NJ', 1);
-//const gaseosa = new Producto('FN312PPE', 'Gaseosa', 5, 'bebidas');
+carrito.agregarProducto('FN312PPE', 2);
 //const cerveza = new Producto('PV332MJ', 'Cerveza', 20, 'bebidas');
 //const arroz = new Producto('XX92LKI', 'Arroz', 7, 'alimentos', 20);
 //const fideos = new Producto('UI999TY', 'Fideos', 5, 'alimentos');

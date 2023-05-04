@@ -1,8 +1,7 @@
-// Producto.js
 // Cada producto que vende el super es creado con esta clase
+// Esto se podria llevar a un archivo independiente producto.js
 //export class Producto {
 class Producto {
-        //export default class Producto {
     sku;            // Identificador único del producto
     nombre;         // Su nombre
     categoria;      // Categoría a la que pertenece este producto
@@ -14,24 +13,13 @@ class Producto {
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
-        this.stock = SetStock(stock);
-    }
 
-    // Se define un valor por defecto 
-    // Debo buscar otra forma mas efectiva
-    setStock(stock){
-      // Si no me definen stock, pongo 10 por default
-      if (stock) {
-          this.stock = stock;
-      } else {
-          this.stock = 10;
-      }
+        if ((stock === undefined) || (stock === null) || (stock === '') || (stock === 0)) {
+            this.stock = 10;
+        } else {
+            this.stock = stock;
+        }
     }
 }
 
-//export default Producto;
-
-module.exports = Producto;
-
-
-
+//module.exports = Producto;
