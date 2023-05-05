@@ -13,10 +13,14 @@ export class Producto {
         this.categoria = categoria;
         this.precio = precio;
 
+        // Se deben validar todos los atributos 
+        // Se valida que sea un valor valido
         if ((stock === undefined) || (stock === null) || (stock === '') || (stock === 0)) {
             this.stock = 10;
         } else {
             this.stock = stock;
         }
+        
+        // Se valida que sea un valor valido
     }
 }
