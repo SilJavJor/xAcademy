@@ -1,7 +1,5 @@
 // Cada producto que vende el super es creado con esta clase
-// Esto se podria llevar a un archivo independiente producto.js
-//export class Producto {
-class Producto {
+export class Producto {
     sku;            // Identificador único del producto
     nombre;         // Su nombre
     categoria;      // Categoría a la que pertenece este producto
