@@ -3,7 +3,7 @@
 
 // Importacion de archivos
 // Importacion de la Clase Producto
-import { Producto } from './product.js';
+import { Producto } from './js/product.js';
 
 // Creo todos los productos que vende mi super
 const queso = new Producto('KS944RUR', 'Queso', 10, 'lacteos', 4);
