@@ -1,33 +1,9 @@
 // Main
 // Archivo principal de JavaScript
 
-// Cada producto que vende el super es creado con esta clase
-// Esto se podria llevar a un archivo independiente producto.js
-// class producto {
-//     sku;            // identificador único del producto
-//     nombre;         // su nombre
-//     categoria;      // categoría a la que pertenece este producto
-//     precio;         // su precio
-//     stock;          // cantidad disponible en stock
-
-//     constructor(sku, nombre, precio, categoria, stock) {
-//         this.sku = sku;
-//         this.nombre = nombre;
-//         this.categoria = categoria;
-//         this.precio = precio;
-
-//         // si no me definen stock, pongo 10 por default
-//         if ((stock === undefined) || (stock === null) || (stock === '') || (stock === 0)) {
-//             this.stock = 10;
-//         } else {
-//             this.stock = stock;
-//         }
-//     }
-// }
-
+// Importacion de archivos
+// Importacion de la Clase Producto
 import { Producto } from './product.js';
-//import { Producto } from './producto';
-//const Producto = require('./producto')
 
 // Creo todos los productos que vende mi super
 const queso = new Producto('KS944RUR', 'Queso', 10, 'lacteos', 4);
