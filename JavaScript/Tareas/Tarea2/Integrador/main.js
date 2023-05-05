@@ -25,87 +25,7 @@ const jabon = new Producto('WE328NJ', 'Jabon', 4, 'higiene', 3);
 // Genero un listado de productos. Simulando base de datos
 const productosDelSuper = [queso, gaseosa, cerveza, arroz, fideos, lavandina, shampoo, jabon];
 
-// Cada cliente que venga a mi super va a crear un carrito
-// Esto se podria llevar a un archivo independiente producto.js
-// class Carrito {
-//     productos;      // Lista de productos agregados
-//     categorias;     // Lista de las diferentes categorías de los productos en el carrito
-//     precioTotal;    // Lo que voy a pagar al finalizar mi compra
-
-//     Al crear un carrito, empieza vació
-//     constructor() {
-//         this.productos = [];
-//         this.categorias = [];
-//         this.precioTotal = 0;
-//     }
-
-//     /*
-//     * función que agrega @{cantidad} de productos con @{sku} al carrito
-//     */
-//     async agregarProducto(sku, cantidad) {
-//         if ((sku !== undefined) || (sku !== null) || (sku !== '') || (sku !== 0)) {
-//             if ((cantidad !== undefined) || (cantidad !== null) || (cantidad !== '') || (cantidad !== 0)) {
-//                if (sku in productos) {
-//                    this.productos[sku].cantidad += cantidad;
-//                     this.precioTotal = this.precioTotal + this.productos[sku].precio * this.productos[sku].cantidad);
-//                  } else {
-//                     Busco el producto en la "base de datos"
-//                     console.log(`Buscando producto ${sku}`);
-//                     const producto = await findProductBySku(sku);
-
-//                     if (producto) {
-//                         console.log("Producto encontrado", producto);
-//                     }
-                    
-//                     Agrego el producto
-//                     console.log(`Agregando producto ${sku} cantidad ${cantidad}`);
-
-//                     Creo un producto nuevo
-//                     const nuevoProducto = new ProductoEnCarrito(sku, producto.nombre, cantidad);
-//                     this.productos.push(nuevoProducto);
-//                     this.precioTotal = this.precioTotal + (producto.precio * cantidad);
-//                     this.categorias.push(producto.categoria);
-//                }
-//             } else {
-//                 console.log("La cantidad debe ser mayor a cero");
-//             }
-//         } else {
-//             console.log("El SKU no puede estar vacio");
-//         }
-//     }
-// }
-
-// // Cada producto que se agrega al carrito es creado con esta clase
-// class ProductoEnCarrito {
-//     sku;       // Identificador único del producto
-//     nombre;    // Su nombre
-//     cantidad;  // Cantidad de este producto en el carrito
-
-//     constructor(sku, nombre, cantidad) {
-//         this.sku = sku;
-//         this.nombre = nombre;
-//         this.cantidad = cantidad;
-//     }
-// }
-
 // Función que busca un producto por su sku en "la base de datos"
-// function findProductBySku(sku) {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             const foundProduct = productosDelSuper.find(product => product.sku === sku);
-//             if (foundProduct) {
-//                 resolve(foundProduct);
-//             } else {
-//                 reject(`Producto ${sku} no encontrado`);
-//             }
-//         }, 1500);
-//     });
-// }
-
-// window.findProductBySku = function(sku) {
-//     // Código para encontrar un producto por SKU
-//   };
-
 //  function findProductBySkuInProductOfSuper(sku) {
 window.findProductBySkuInProductOfSuper = function (sku) {
         return new Promise((resolve, reject) => {
@@ -120,15 +40,13 @@ window.findProductBySkuInProductOfSuper = function (sku) {
     });
 }
 
-// Exportamos la findProductBySkuProductOfSuper para que pueda ser utilizado
-// por la clase que lo necesite
-//export { findProductBySkuInProductOfSuper };
 
 const carrito = new Carrito();
-carrito.agregarProducto('WE328NJ', 2, productosDelSuper);
-carrito.agregarProducto('KS944RUR', 10, productosDelSuper);
-carrito.agregarProducto('WE328NJ', 1, productosDelSuper);
-carrito.agregarProducto('FN312PPE', 2, productosDelSuper);
+
+carrito.agregarProducto('WE328NJ', 2);
+carrito.agregarProducto('KS944RUR', 10);
+carrito.agregarProducto('WE328NJ', 1);
+carrito.agregarProducto('FN312PPE', 2);
 
 
 //const cerveza = new Producto('PV332MJ', 'Cerveza', 20, 'bebidas');
