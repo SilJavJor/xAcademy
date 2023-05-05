@@ -1,3 +1,6 @@
+// Main
+// Archivo principal de JavaScript
+
 // Cada producto que vende el super es creado con esta clase
 // Esto se podria llevar a un archivo independiente producto.js
 // class producto {
@@ -22,7 +25,7 @@
 //     }
 // }
 
-import { Producto } from './producto.js';
+import { Producto } from './product.js';
 //import { Producto } from './producto';
 //const Producto = require('./producto')
 
