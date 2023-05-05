@@ -1,5 +1,8 @@
 // Clase Carrito
 // Cada cliente que venga a mi super va a crear un carrito
+
+import { ProductoEnCarrito } from './js/productincart.js';
+
 export class Carrito {
     productos;      // Lista de productos agregados
     categorias;     // Lista de las diferentes categorías de los productos en el carrito
@@ -15,7 +18,7 @@ export class Carrito {
     /*
     * función que agrega @{cantidad} de productos con @{sku} al carrito
     */
-    async agregarProducto(sku, cantidad) {
+    async agregarProducto(sku, cantidad, productosDelSuper) {
         if ((sku !== undefined) || (sku !== null) || (sku !== '') || (sku !== 0)) {
             if ((cantidad !== undefined) || (cantidad !== null) || (cantidad !== '') || (cantidad !== 0)) {
             //    if (sku in productos) {
@@ -24,8 +27,10 @@ export class Carrito {
             //      } else {
                     // Busco el producto en la "base de datos"
                     console.log(`Buscando producto ${sku}`);
-                    const producto = await findProductBySku(sku);
-
+//                    const producto = await findProductBySku(sku);
+//const producto = await findProductBySkuInProductOfSuper(sku, productosDelSuper);
+                    const producto = await window.findProductBySkuInProductOfSuper(sku);
+                    
                     if (producto) {
                         console.log("Producto encontrado", producto);
                     }
@@ -46,4 +51,24 @@ export class Carrito {
             console.log("El SKU no puede estar vacio");
         }
     }
+
+    // //
+    // findProductBySkuInProductOfSuper(sku, productosDelSuper) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             const foundProduct = productosDelSuper.find(product => product.sku === sku);
+    //             if (foundProduct) {
+    //                 resolve(foundProduct);
+    //             } else {
+    //                 reject(`Producto ${sku} no encontrado`);
+    //             }
+    //         }, 1500);
+    //     });
+    // }
 }
+
+//
+
+
+
+

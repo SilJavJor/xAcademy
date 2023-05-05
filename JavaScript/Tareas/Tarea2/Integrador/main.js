@@ -1,15 +1,15 @@
 // Main
-// Archivo principal de JavaScript
+// Archivo JavaScript principal
 
 // Importacion de archivos
-// Importacion de la Clase Producto
-import { Producto } from './js/product.js';
-
 // Importacion de la Clase Carrito
 import { Carrito } from './js/cart.js';
 
 // Importacion de la Clase ProductoEnCarrito
 import { ProductoEnCarrito } from './js/productincart.js';
+
+// Importacion de la Clase Producto
+import { Producto } from './js/product.js';
 
 
 // Creo todos los productos que vende mi super
@@ -89,8 +89,26 @@ const productosDelSuper = [queso, gaseosa, cerveza, arroz, fideos, lavandina, sh
 // }
 
 // Función que busca un producto por su sku en "la base de datos"
-function findProductBySku(sku) {
-    return new Promise((resolve, reject) => {
+// function findProductBySku(sku) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             const foundProduct = productosDelSuper.find(product => product.sku === sku);
+//             if (foundProduct) {
+//                 resolve(foundProduct);
+//             } else {
+//                 reject(`Producto ${sku} no encontrado`);
+//             }
+//         }, 1500);
+//     });
+// }
+
+// window.findProductBySku = function(sku) {
+//     // Código para encontrar un producto por SKU
+//   };
+
+//  function findProductBySkuInProductOfSuper(sku) {
+window.findProductBySkuInProductOfSuper = function (sku) {
+        return new Promise((resolve, reject) => {
         setTimeout(() => {
             const foundProduct = productosDelSuper.find(product => product.sku === sku);
             if (foundProduct) {
@@ -102,11 +120,15 @@ function findProductBySku(sku) {
     });
 }
 
+// Exportamos la findProductBySkuProductOfSuper para que pueda ser utilizado
+// por la clase que lo necesite
+//export { findProductBySkuInProductOfSuper };
+
 const carrito = new Carrito();
-//carrito.agregarProducto('WE328NJ', 2);
-//carrito.agregarProducto('KS944RUR', 10);
-//carrito.agregarProducto('WE328NJ', 1);
-//carrito.agregarProducto('FN312PPE', 2);
+carrito.agregarProducto('WE328NJ', 2, productosDelSuper);
+carrito.agregarProducto('KS944RUR', 10, productosDelSuper);
+carrito.agregarProducto('WE328NJ', 1, productosDelSuper);
+carrito.agregarProducto('FN312PPE', 2, productosDelSuper);
 
 
 //const cerveza = new Producto('PV332MJ', 'Cerveza', 20, 'bebidas');
