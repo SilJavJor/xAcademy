@@ -26,7 +26,7 @@ const jabon = new Producto('WE328NJ', 'Jabon', 4, 'higiene', 3);
 const productosDelSuper = [queso, gaseosa, cerveza, arroz, fideos, lavandina, shampoo, jabon];
 
 // Función que busca un producto por su sku en "la base de datos"
-//  function findProductBySkuInProductOfSuper(sku) {
+// function findProductBySkuInProductOfSuper(sku) {
 window.findProductBySkuInProductOfSuper = function (sku) {
         return new Promise((resolve, reject) => {
         setTimeout(() => {
