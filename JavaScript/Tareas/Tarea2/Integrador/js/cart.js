@@ -1,5 +1,6 @@
 // Importacion de la Clase ProductoEnCarrito
 import { ProductoEnCarrito } from './productcart.js';
+//import { ProductosDelSuper } from './productsuper.js';
 
 // Clase Carrito
 // Cada cliente que venga a mi super va a crear un carrito
@@ -15,72 +16,60 @@ export class Carrito {
         this.precioTotal = 0;
     }
 
-    /*
-    * función que agrega @{cantidad} de productos con @{sku} al carrito
-    */
-    async agregarProducto(sku, cantidad) {
-        // if ((sku !== undefined) && (sku !== null) && (sku !== '') && (sku !== 0)) {
-        //     if ((cantidad !== undefined) && (cantidad !== null) && (cantidad !== '') && (cantidad !== 0)) {
-        // if ((sku !== undefined) || (sku !== null) || (sku !== '') || (sku !== 0)) {
-        //    if ((cantidad !== undefined) || (cantidad !== null) || (cantidad !== '') || (cantidad !== 0)) {
-            //    if (sku in productos) {
-            //        this.productos[sku].cantidad += cantidad;
-            //         this.precioTotal = this.precioTotal + this.productos[sku].precio * this.productos[sku].cantidad);
-            //      } else {
-                    // Busco el producto en la "base de datos"
-                    // console.log(`Buscando producto ${sku}`);
-                    // const producto = await window.findProductBySkuInProductOfSuper(sku);
-                    
-                    // if (producto) {
-                    //     console.log("Producto encontrado", producto);
-                    // }
-                    
-                    // // Agrego el producto
-                    // console.log(`Agregando producto ${sku} cantidad ${cantidad}`);
-
-                    // // Creo un producto nuevo
-                    // const nuevoProducto = new ProductoEnCarrito(sku, producto.nombre, cantidad);
-                    // this.productos.push(nuevoProducto);
-                    // this.precioTotal = this.precioTotal + (producto.precio * cantidad);
-                    // this.categorias.push(producto.categoria);
-            //    }
-        //     } else {
-        //         console.log("La cantidad debe ser mayor a cero");
-        //     }
-        // } else {
-        //     console.log("El SKU no puede estar vacio");
-        // }
-
-        if (sku && cantidad) {
-            // Busco el producto en la "base de datos"
-            console.log(`Buscando producto ${sku}`);
-            try {
-              const producto = await window.findProductBySkuInProductOfSuper(sku);
-              console.log("Producto encontrado", producto);
-      
-              // Agrego el producto
-              console.log(`Agregando producto ${sku} cantidad ${cantidad}`);
-      
-              // Creo un producto nuevo
-              const nuevoProducto = new ProductoEnCarrito(sku, producto.nombre, cantidad);
-              this.productos.push(nuevoProducto);
-              this.precioTotal += producto.precio * cantidad;
-              this.categorias.push(producto.categoria);
-            } catch (error) {
-              console.log(error);
-            }
-          } else {
-            console.log("El SKU y la cantidad deben ser especificados");
-          }
-        }
-
-        listarProductos() {
-            console.log('Productos en el carrito:');
-            this.productos.forEach((producto) => {
-              console.log(`SKU: ${producto.sku}`);
-              console.log(`Cantidad: ${producto.cantidad}`);
-              console.log('------------------------');
-            });
-          }
+    listProducts() {
+        console.log('Productos en el carrito:');
+        this.productos.forEach((productos) => {
+          //console.log(`SKU: ${producto.sku}`);
+          //console.log(`Cantidad: ${producto.cantidad}`);
+          console.log('------------------------');
+        });
     }
-//}
+    
+    listPrecioTotal() {
+        console.log(`Total del carrito: ${this.precioTotal}`);
+    }
+
+    listCategories() {
+        console.log('Categorias en el carrito:');
+        this.productos.forEach((producto) => {
+          //console.log(`SKU: ${producto.sku}`);
+          //console.log(`Cantidad: ${producto.cantidad}`);
+          console.log('------------------------');
+        });
+    }
+    
+    // función que agrega @{cantidad} de productos con @{sku} al carrito
+    async agregarProducto(sku, cantidad) {
+        // Si lo valores con validos
+        if (sku && cantidad) {
+            // Busco el producto en el carrito
+            console.log(`Buscando el producto ${sku} en el carrito...`);
+            const productoExistenteCarrito = this.productos.find(producto => producto.sku === sku);
+            
+            // Si el producto se encuentera en el carrito sumo la cantidad|
+            if (productoExistenteCarrito) {
+                productoExistenteCarrito.cantidad += cantidad;
+            } else {
+                try {
+                    // Busco el producto en el super
+                    console.log(`Buscando el producto en la base del super... ${sku}`);
+                    const producto = await window.findProductBySkuInProductOfSuper(sku);
+                    //const producto = await productos.ProductosDelSuper.fifin find window.findProductBySkuInProductOfSuper(sku);
+                    
+                    // Agrego el producto
+                    console.log(`Agregando producto  ${sku} cantidad  ${cantidad}`);
+      
+                    // Creo un producto nuevo
+                    const nuevoProducto = new ProductoEnCarrito(sku, producto.nombre, cantidad);
+                    this.productos.push(nuevoProducto);
+                    this.precioTotal += producto.precio * cantidad;
+                    this.categorias.push(producto.categoria);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        } else {
+            console.log("el sku y la cantidad deben ser especificados");
+        }
+    }
+}

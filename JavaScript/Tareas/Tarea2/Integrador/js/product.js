@@ -1,9 +1,3 @@
-// Importación de la Clase ProductoEnCarrito
-//import { ProductoEnCarrito } from './productcart.js';
-
-// Importación de la Clase Producto
-//import { Producto } from './js/product.js';
-
 // Clase Producto
 // Cada producto que vende el super es creado con esta clase
 export class Producto {

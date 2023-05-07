@@ -1,35 +1,45 @@
 // Main  /  Principal
 // Importacion de archivos
-import { ProductosDelSuper } from './js/productloader.js';
-
-// Importacion de la Clase ProductoEnCarrito
-//import { ProductoEnCarrito } from './js/productcart.js';
-
-// Importacion de la Clase Carrito
+import { ProductosDelSuper } from './js/productsuper.js';
 import { Carrito } from './js/cart.js';
 
-// Importacion de la Clase Producto
-//import { Producto } from './js/product.js';
-
-// Creacion de productosDelSuper, su carga
-const productosDelSuper = new ProductosDelSuper();
-productosDelSuper.loadProducts();
-
-
 // Función que busca un producto por su sku en "la base de datos"
-// function findProductBySku(sku) {
-    window.findProductBySkuInProductOfSuper = function (sku) {
-        return new Promise((resolve, reject) => {
+//function findProductBySku(sku) {
+window.findProductBySkuInProductOfSuper = function (sku) {
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
             const foundProduct = productosDelSuper.productos.find(product => product.sku === sku);
             if (foundProduct) {
+                console.log("Producto encontrado...", foundProduct);
+
                 resolve(foundProduct);
             } else {
-                reject(`Producto ${sku} no encontrado.......`);
+                reject(`Producto ${sku} no encontrado...`);
             }
         }, 1500);
     });
 }
+
+
+// Función que busca un producto por su sku en "la base de datos"
+// window.findProductBySkuInProductOfSuper = function (sku) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             const foundProduct = productosDelSuper.productos.find(product => product.sku === sku);
+//             if (foundProduct) {
+//                 resolve(foundProduct);
+//             } else {
+//                 reject(`Producto ${sku} no encontrado.......`);
+//             }
+//         }, 1500);
+//     });
+// }
+
+
+
+// Creacion de productosDelSuper, su carga
+const productosDelSuper = new ProductosDelSuper();
+productosDelSuper.loadProducts();
 
 
 // Se crea un carrito y agregan productos al carrito
@@ -44,6 +54,7 @@ carrito.agregarProducto('FN312PPE', 2);
 //const lavandina = new Producto('RT324GD', 'Lavandina', 9, 'limpieza');
 //const shampoo = new Producto('OL883YE', 'Shampoo', 3, 'higiene', 50);
 //const jabon = new Producto('WE328NJ', 'Jabon', 4, 'higiene', 3);
+carrito.agregarProducto('FN458PPE', 2);
 
 // Lista los productos del super
 //productosDelSuper.listProducts();
