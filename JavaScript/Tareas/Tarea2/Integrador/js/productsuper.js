@@ -44,9 +44,21 @@ export class ProductosDelSuper {
       });
     }
 
-    // findProductBySku(sku) {
-    //   return this.productos.find((producto) => producto.sku === sku);
-    // }
+    findProductBySku(sku) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const foundProduct = productos.find(product => product.sku === sku);
+        
+          if (foundProduct) {
+            console.log("Producto encontrado...", foundProduct);
+
+            resolve(foundProduct);
+          } else {
+            reject(`Producto ${sku} no encontrado...`);
+          }
+        }, 1500);
+//       return this.productos.find((producto) => producto.sku === sku);
+    }
 
   //   findProductBySku = function (sku) {
   //     return new Promise((resolve, reject) => {

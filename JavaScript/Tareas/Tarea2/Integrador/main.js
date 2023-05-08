@@ -36,7 +36,6 @@ window.findProductBySkuInProductOfSuper = function (sku) {
 // }
 
 
-
 // Creacion de productosDelSuper, su carga
 const productosDelSuper = new ProductosDelSuper();
 productosDelSuper.loadProducts();
@@ -55,6 +54,7 @@ carrito.agregarProducto('FN312PPE', 2);
 //const shampoo = new Producto('OL883YE', 'Shampoo', 3, 'higiene', 50);
 //const jabon = new Producto('WE328NJ', 'Jabon', 4, 'higiene', 3);
 carrito.agregarProducto('FN458PPE', 2);
+
 
 // Lista los productos del super
 //productosDelSuper.listProducts();

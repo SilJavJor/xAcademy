@@ -1,6 +1,6 @@
 // Importacion de la Clase ProductoEnCarrito
 import { ProductoEnCarrito } from './productcart.js';
-//import { ProductosDelSuper } from './productsuper.js';
+import { ProductosDelSuper } from './productsuper.js';
 
 // Clase Carrito
 // Cada cliente que venga a mi super va a crear un carrito
@@ -14,28 +14,6 @@ export class Carrito {
         this.productos = [];
         this.categorias = [];
         this.precioTotal = 0;
-    }
-
-    listProducts() {
-        console.log('Productos en el carrito:');
-        this.productos.forEach((productos) => {
-          //console.log(`SKU: ${producto.sku}`);
-          //console.log(`Cantidad: ${producto.cantidad}`);
-          console.log('------------------------');
-        });
-    }
-    
-    listPrecioTotal() {
-        console.log(`Total del carrito: ${this.precioTotal}`);
-    }
-
-    listCategories() {
-        console.log('Categorias en el carrito:');
-        this.productos.forEach((producto) => {
-          //console.log(`SKU: ${producto.sku}`);
-          //console.log(`Cantidad: ${producto.cantidad}`);
-          console.log('------------------------');
-        });
     }
     
     // función que agrega @{cantidad} de productos con @{sku} al carrito
@@ -53,7 +31,8 @@ export class Carrito {
                 try {
                     // Busco el producto en el super
                     console.log(`Buscando el producto en la base del super... ${sku}`);
-                    const producto = await window.findProductBySkuInProductOfSuper(sku);
+                    //const producto = await window.findProductBySkuInProductOfSuper(sku);
+                    const producto = await ProductosDelSuper.productos.findProductBySku(sku);
                     //const producto = await productos.ProductosDelSuper.fifin find window.findProductBySkuInProductOfSuper(sku);
                     
                     // Agrego el producto
@@ -71,5 +50,28 @@ export class Carrito {
         } else {
             console.log("el sku y la cantidad deben ser especificados");
         }
+    }
+
+    
+    listProducts() {
+        console.log('Productos en el carrito:');
+        this.productos.forEach((productos) => {
+          //console.log(`SKU: ${producto.sku}`);
+          //console.log(`Cantidad: ${producto.cantidad}`);
+          console.log('------------------------');
+        });
+    }
+    
+    listCategories() {
+        console.log('Categorias en el carrito:');
+        this.productos.forEach((producto) => {
+          //console.log(`SKU: ${producto.sku}`);
+          //console.log(`Cantidad: ${producto.cantidad}`);
+          console.log('------------------------');
+        });
+    }
+
+    listPrecioTotal() {
+        console.log(`Total del carrito: ${this.precioTotal}`);
     }
 }
