@@ -37,8 +37,9 @@ export class Carrito {
                 try {
                     // Busco el producto en el super
                     console.log(`Buscando el producto en la base del super... ${sku}`);
-                    const producto = await window.findProductBySkuInProductOfSuper(sku);
-                    //const producto = await ProductosDelSuper.productos.findProductBySku(sku);
+                    //const producto = await window.findProductBySkuInProductOfSuper(sku);
+
+                    const producto = await new ProductosDelSuper().findProductBySku(sku);
                     
                     // Agrego el producto
                     console.log(`Agregando producto  ${sku} cantidad  ${cantidad}`);

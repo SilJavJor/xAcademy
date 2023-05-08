@@ -47,7 +47,7 @@ export class ProductosDelSuper {
     findProductBySku(sku) {
       return new Promise((resolve, reject) => {
           setTimeout(() => {
-              const foundProduct = productosDelSuper.productos.find(product => product.sku === sku);
+              const foundProduct = this.productos.find(product => product.sku === sku);
               if (foundProduct) {
                   console.log("Producto encontrado...", foundProduct);
   

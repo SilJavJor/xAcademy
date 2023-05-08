@@ -3,6 +3,11 @@
 import { ProductosDelSuper } from './js/productsuper.js';
 import { Carrito } from './js/cart.js';
 
+// Creacion de productosDelSuper, su carga
+const productosDelSuper = new ProductosDelSuper();
+productosDelSuper.loadProducts();
+
+
 // Función que busca un producto por su sku en "la base de datos"
 window.findProductBySkuInProductOfSuper = function (sku) {
     return new Promise((resolve, reject) => {
@@ -34,10 +39,6 @@ window.findProductBySkuInProductOfSuper = function (sku) {
 //     });
 // }
 
-
-// Creacion de productosDelSuper, su carga
-const productosDelSuper = new ProductosDelSuper();
-productosDelSuper.loadProducts();
 
 
 // Se crea un carrito y agregan productos al carrito
