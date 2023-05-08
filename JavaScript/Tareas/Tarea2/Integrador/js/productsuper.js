@@ -17,7 +17,7 @@ export class ProductosDelSuper {
       const fideos = new Producto('UI999TY', 'Fideos', 5, 'Alimentos');
       const lavandina = new Producto('RT324GD', 'Lavandina', 9, 'Limpieza');
       const shampoo = new Producto('OL883YE', 'Shampoo', 3, 'Higiene', 50);
-      const jabon = new Producto('WE328NJ', 'Jabon', 4, 'Higiene', 3);
+      const jabon = new Producto('WE328NJ', 'Jabon', 4, 'Higiene', 20);
       const polenta = new Producto('JK332MJ', 'Polenta', 20, 'Alimentos');
       const detergente = new Producto('XX92LKI', 'Detergente', 7, 'Lipieza', 30);
       //const tomate = new Producto('UI999TY', 'Tomate', 5, 'Alimentos');
@@ -46,30 +46,16 @@ export class ProductosDelSuper {
 
     findProductBySku(sku) {
       return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          const foundProduct = productos.find(product => product.sku === sku);
-        
-          if (foundProduct) {
-            console.log("Producto encontrado...", foundProduct);
-
-            resolve(foundProduct);
-          } else {
-            reject(`Producto ${sku} no encontrado...`);
-          }
-        }, 1500);
-//       return this.productos.find((producto) => producto.sku === sku);
-    }
-
-  //   findProductBySku = function (sku) {
-  //     return new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //         const foundProduct = productosDelSuper.productos.find(product => product.sku === sku);
-  //         if (foundProduct) {
-  //             resolve(foundProduct);
-  //         } else {
-  //             reject(`Producto ${sku} no encontrado.......`);
-  //         }
-  //     }, 1500);
-  // });
-}
+          setTimeout(() => {
+              const foundProduct = productosDelSuper.productos.find(product => product.sku === sku);
+              if (foundProduct) {
+                  console.log("Producto encontrado...", foundProduct);
   
+                  resolve(foundProduct);
+              } else {
+                  reject(`Producto ${sku} no encontrado...`);
+              }
+          }, 1500);
+      });
+  }    
+}

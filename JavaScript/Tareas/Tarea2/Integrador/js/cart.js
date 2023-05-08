@@ -26,14 +26,19 @@ export class Carrito {
             
             // Si el producto se encuentera en el carrito sumo la cantidad|
             if (productoExistenteCarrito) {
+                // Modificando la cantidad, el precio y el precio total
+                console.log(`Modificando valores...`);
+
+                this.precioTotal -= productoExistenteCarrito.precio * cantidad;
+
                 productoExistenteCarrito.cantidad += cantidad;
+                this.precioTotal += productoExistenteCarrito.precio * cantidad;
             } else {
                 try {
                     // Busco el producto en el super
                     console.log(`Buscando el producto en la base del super... ${sku}`);
-                    //const producto = await window.findProductBySkuInProductOfSuper(sku);
-                    const producto = await ProductosDelSuper.productos.findProductBySku(sku);
-                    //const producto = await productos.ProductosDelSuper.fifin find window.findProductBySkuInProductOfSuper(sku);
+                    const producto = await window.findProductBySkuInProductOfSuper(sku);
+                    //const producto = await ProductosDelSuper.productos.findProductBySku(sku);
                     
                     // Agrego el producto
                     console.log(`Agregando producto  ${sku} cantidad  ${cantidad}`);
@@ -52,7 +57,10 @@ export class Carrito {
         }
     }
 
-    
+    async agregarProducto(sku, cantidad) {
+
+    }
+
     listProducts() {
         console.log('Productos en el carrito:');
         this.productos.forEach((productos) => {

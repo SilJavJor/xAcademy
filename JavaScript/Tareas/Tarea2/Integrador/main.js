@@ -4,7 +4,6 @@ import { ProductosDelSuper } from './js/productsuper.js';
 import { Carrito } from './js/cart.js';
 
 // Función que busca un producto por su sku en "la base de datos"
-//function findProductBySku(sku) {
 window.findProductBySkuInProductOfSuper = function (sku) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -22,7 +21,7 @@ window.findProductBySkuInProductOfSuper = function (sku) {
 
 
 // Función que busca un producto por su sku en "la base de datos"
-// window.findProductBySkuInProductOfSuper = function (sku) {
+// findProductBySkuInProductOfSuper = function (sku) {
 //     return new Promise((resolve, reject) => {
 //         setTimeout(() => {
 //             const foundProduct = productosDelSuper.productos.find(product => product.sku === sku);
@@ -43,7 +42,7 @@ productosDelSuper.loadProducts();
 
 // Se crea un carrito y agregan productos al carrito
 const carrito = new Carrito();
-carrito.agregarProducto('WE328NJ', 2);
+carrito.agregarProducto('WE328NJ', 4);
 carrito.agregarProducto('KS944RUR', 10);
 carrito.agregarProducto('WE328NJ', 1);
 carrito.agregarProducto('FN312PPE', 2);
