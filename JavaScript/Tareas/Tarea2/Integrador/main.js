@@ -53,7 +53,7 @@ carrito.agregarProducto('FN312PPE', 2);
 //const shampoo = new Producto('OL883YE', 'Shampoo', 3, 'higiene', 50);
 //const jabon = new Producto('WE328NJ', 'Jabon', 4, 'higiene', 3);
 carrito.agregarProducto('FN458PPE', 2);
-
+carrito.eliminarProducto('WE328NJ', 1);
 
 // Lista los productos del super
 //productosDelSuper.listProducts();
