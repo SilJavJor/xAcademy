@@ -17,7 +17,7 @@ export class Carrito {
     }
     
     // función que agrega @{cantidad} de productos con @{sku} al carrito
-    async agregarProducto(sku, cantidad) {
+    async agregarProducto(sku, cantidad, productosDelSuper) {
         // Si lo valores con validos
         if (sku && cantidad) {
             // Busco el producto en el carrito
@@ -38,8 +38,8 @@ export class Carrito {
                     // Busco el producto en el super
                     console.log(`Buscando el producto en la base del super... ${sku}`);
                     //const producto = await window.findProductBySkuInProductOfSuper(sku);
-
-                    const producto = await new ProductosDelSuper().findProductBySku(sku);
+                    const producto = await productosDelSuper.findProductBySku(sku);
+                    //const producto = await new ProductosDelSuper().findProductBySku(sku);
                     
                     // Agrego el producto
                     console.log(`Agregando producto  ${sku} cantidad  ${cantidad}`);
