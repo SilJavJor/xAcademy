@@ -22,39 +22,55 @@ export class Carrito {
         if (sku && cantidad) {
             // Busco el producto en el carrito
             console.log(`Buscando el producto ${sku} en el carrito...`);
-            const productoExistenteCarrito = this.productos.find(producto => producto.sku === sku);
+            const productoExistenteEnCarrito = this.productos.find(producto => producto.sku === sku);
 
-            // Si el producto se encuentera en el carrito sumo la cantidad|
-            if (productoExistenteCarrito) {
-                // Modificando la cantidad, el precio y el precio total
-                console.log(`Modificando valores...`);
+            // Verifico si el producto se encuentera en el carrito sumo la cantidad|
+            if (productoExistenteEnCarrito) {
+              // Si el producto es encontrado
+              console.log(`El producto ${productoExistenteEnCarrito.sku} se encuentra en el carrito...`);
 
-                this.precioTotal -= productoExistente.precio * cantidad;
+              updateQuantityPrice(productoExistenteEnCarrito);
 
-                productoExistenteCarrito.cantidad += cantidad;
-                this.precioTotal += productoExistenteCarrito.precio * productoExistenteCarrito.cantidad;
+              // // Modificando la cantidad, el precio y el precio total
+              // console.log(`Modificando valores...`);
+
+              // this.precioTotal -= productoExistenteEnCarrito.precio * cantidad;
+
+              // productoExistenteEnCarrito.cantidad += cantidad;
+              // this.precioTotal += productoExistenteEnCarrito.precio * productoExistenteEnCarrito.cantidad;
             } else {
                 try {
                     // Busco el producto en el super
                     console.log(`Buscando el producto en la base del super... ${sku}`);
                     //const producto = await window.findProductBySkuInProductOfSuper(sku);
-                    const producto = await productosDelSuper.findProductBySku(sku);
+                    const productoExistenteEnSuper = await productosDelSuper.findProductBySku(sku);
                     //const producto = await new ProductosDelSuper().findProductBySku(sku);
-                    
+
+                    // Verifico si el producto se encuentra en el producto del supermercado
                     // Agrego el producto
-                    console.log(`Agregando producto  ${sku} cantidad  ${cantidad}`);
+                    if (productoExistenteEnSuper) {
+                      // Agrega un Producto
+                      addProduct(productoExistenteEnSuper);
+
+                      // console.log(`Agregando producto  ${sku} cantidad  ${cantidad}`);
       
-                    // Creo un producto nuevo
-                    const nuevoProducto = new ProductoEnCarrito(sku, producto.nombre, cantidad);
-                    this.productos.push(nuevoProducto);
-                    this.precioTotal += producto.precio * cantidad;
-                    this.categorias.push(producto.categoria);
-                } catch (error) {
+                      // // Creo un producto nuevo
+                      // const nuevoProducto = new ProductoEnCarrito(sku, productoExistenteEnSuper.nombre, cantidad);
+                      // this.productos.push(nuevoProducto);
+                      // this.precioTotal += producto.precio * cantidad;
+                      // this.categorias.push(producto.categoria);
+                    
+                      // // Agregado Exitosamente
+                      // console.log(`Producto  ${sku} agregado exitosamente...`);
+                    } else {
+                      console.log(`No se encontró el producto ${sku} en el supermercado.`);
+                    }
+                  } catch (error) {
                     console.log(error);
                 }
             }
         } else {
-            console.log("el sku y la cantidad deben ser especificados");
+            console.log("El sku y la cantidad deben ser especificados");
         }
     }
 
@@ -76,6 +92,32 @@ export class Carrito {
             reject(`El producto con SKU ${sku} no existe en el carrito.`);
           }
         });
+    }
+
+    updateQuantityPrice(productoExistenteEnCarrito) {
+      // Modificando la cantidad, el precio y el precio total
+      console.log(`Modificando el cantidad y precio...`);
+
+      this.preciototal -= productoExistenteEnCarrito.precio * cantidad;
+
+      productoExistenteEnCarrito.cantidad += cantidad;
+      this.preciototal += productoExistenteEnCarrito.precio * productoExistenteEnCarrito.cantidad;
+    }
+
+    addProduct(productoExistenteEnSuper) {
+      // 
+      console.log(`Agregando producto  ${sku} cantidad  ${cantidad}`);
+      
+      // Creo un producto nuevo
+      const nuevoProducto = new ProductoEnCarrito(sku, productoExistenteEnSuper.nombre, cantidad);
+      
+      // Agrego el producto
+      this.productos.push(nuevoProducto);
+      this.precioTotal += producto.precio * cantidad;
+      this.categorias.push(producto.categoria);
+                    
+      // Agregado Exitosamente
+      console.log(`Producto  ${sku} agregado exitosamente...`);
     }
 
     listProducts() {

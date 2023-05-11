@@ -8,23 +8,23 @@ export class ProductosDelSuper {
       this.productos = [];
     }
   
-    loadproducts() {
-       // cargar los productos del super desde una fuente de datos.
-       const queso = new producto('ks944rur', 'queso', 10, 'lacteos', 4);
-       const gaseosa = new producto('fn312ppe', 'gaseosa', 5, 'bebidas', 6);
-       const cerveza = new producto('pv332mj', 'cerveza', 20, 'bebidas');
-       const arroz = new producto('xx92lki', 'arroz', 7, 'alimentos', 20);
-       const fideos = new producto('ui999ty', 'fideos', 5, 'alimentos');
-       const lavandina = new producto('rt324gd', 'lavandina', 9, 'limpieza');
-       const shampoo = new producto('ol883ye', 'shampoo', 3, 'higiene', 50);
-       const jabon = new producto('we328nj', 'jabon', 4, 'higiene', 20);
-       const polenta = new producto('jk332mj', 'polenta', 20, 'alimentos');
-       const detergente = new producto('xx92lki', 'detergente', 7, 'lipieza', 30);
-       //const tomate = new producto('ui999ty', 'tomate', 5, 'alimentos');
-       //const mayonesa = new producto('rt324gd', 'mayonesa', 9, 'alimentos');
-       //const desodorante = new producto('ol883ye', 'desodorante', 3, 'higiene', 50);
-       //const esponja = new producto('we328nj', 'esponja', 4, 'limpieza', 3);
-       //const isopo = new producto('we328nj', 'isopo', 4, 'perfumeria', 3);
+    loadProducts() {
+       // Simula la carga de los productos del super desde una fuente de datos.
+       const queso = new Producto('KS944RUR', 'Queso', 10, 'Lacteos', 4);
+       const gaseosa = new Producto('FN312PPE', 'Gaseosa', 5, 'Bebidas', 6);
+       const cerveza = new Producto('PV332MJ', 'Cerveza', 20, 'Bebidas');
+       const arroz = new Producto('XX92LKI', 'Arroz', 7, 'Alimentos', 20);
+       const fideos = new Producto('UI999TY', 'Fideos', 5, 'Alimentos');
+       const lavandina = new Producto('RT324GD', 'Lavandina', 9, 'Limpieza');
+       const shampoo = new Producto('OL883YE', 'Shampoo', 3, 'Higiene', 50);
+       const jabon = new Producto('WE328NJ', 'Jabon', 4, 'Higiene', 20);
+       const polenta = new Producto('JK332MJ', 'Polenta', 20, 'Alimentos');
+       const detergente = new Producto('XX92LKI', 'Detergente', 7, 'Lipieza', 30);
+    //       //const tomate = new Producto('UI999TY', 'Tomate', 5, 'Alimentos');
+    //       //const mayonesa = new Producto('RT324GD', 'Mayonesa', 9, 'Alimentos');
+    //       //const desodorante = new Producto('OL883YE', 'Desodorante', 3, 'Higiene', 50);
+    //       //const esponja = new Producto('WE328NJ', 'Esponja', 4, 'Limpieza', 3);
+    //       //const isopo = new Producto('WE328NJ', 'Isopo', 4, 'Perfumeria', 3);
 
        // Carga el array de productos.
        this.productos = [queso, gaseosa, cerveza, arroz, fideos, lavandina, shampoo, jabon, polenta, detergente];
@@ -84,5 +84,5 @@ export class ProductosDelSuper {
               }
           }, 1500);
       });
-  }    
+    }    
 }
