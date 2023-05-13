@@ -30,6 +30,7 @@ export class ProductosDelSuper {
        this.productos = [queso, gaseosa, cerveza, arroz, fideos, lavandina, shampoo, jabon, polenta, detergente];
     }
 
+    {
     // loadProducts() {
     //   return new Promise((resolve, reject) => {
     //     // Simular una operación asincrónica de carga de productos desde una fuente de datos (por ejemplo, una API)
@@ -56,6 +57,7 @@ export class ProductosDelSuper {
     //     }, 1500); // Simulación de un tiempo de espera de 1.5 segundos para cargar los productos
     //   });
     // }
+    }
   
     listProducts() {
       // Mostrar los datos de productosDelSuper por consola

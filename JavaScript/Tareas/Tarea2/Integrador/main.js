@@ -7,10 +7,10 @@ import { Carrito } from './js/cart.js';
 const productosDelSuper = new ProductosDelSuper();
 //productosDelSuper = ProductosDelSuper.loadProducts();
 productosDelSuper.loadProducts();
-
 // Lista los productos del super
 //productosDelSuper.listProducts();
 
+{
 // Función que busca un producto por su sku en "la base de datos"
 // window.findProductBySkuInProductOfSuper = function (sku) {
 //     return new Promise((resolve, reject) => {
@@ -41,8 +41,9 @@ productosDelSuper.loadProducts();
 //         }, 1500);
 //     });
 // }
+}
 
-setTimeout(1500)
+//setTimeout(1500)
 
 // Se crea un carrito y agregan productos al carrito
 const carrito = new Carrito();

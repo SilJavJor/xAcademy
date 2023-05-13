@@ -31,6 +31,7 @@ export class Carrito {
 
               updateQuantityPrice(productoExistenteEnCarrito);
 
+              {
               // // Modificando la cantidad, el precio y el precio total
               // console.log(`Modificando valores...`);
 
@@ -38,6 +39,7 @@ export class Carrito {
 
               // productoExistenteEnCarrito.cantidad += cantidad;
               // this.precioTotal += productoExistenteEnCarrito.precio * productoExistenteEnCarrito.cantidad;
+              }
             } else {
                 try {
                     // Busco el producto en el super
@@ -52,6 +54,7 @@ export class Carrito {
                       // Agrega un Producto
                       addProduct(productoExistenteEnSuper);
 
+                      {
                       // console.log(`Agregando producto  ${sku} cantidad  ${cantidad}`);
       
                       // // Creo un producto nuevo
@@ -62,6 +65,7 @@ export class Carrito {
                     
                       // // Agregado Exitosamente
                       // console.log(`Producto  ${sku} agregado exitosamente...`);
+                      }
                     } else {
                       console.log(`No se encontró el producto ${sku} en el supermercado.`);
                     }
@@ -87,6 +91,7 @@ export class Carrito {
               const index = this.productosEnCarritoCarrito.indexOf(productoExistenteCarrito);
               this.productosEnCarritoCarrito.splice(index, 1);
             }
+
             resolve("Producto eliminado del carrito.");
           } else {
             reject(`El producto con SKU ${sku} no existe en el carrito.`);
@@ -125,7 +130,7 @@ export class Carrito {
         this.productos.forEach((productos) => {
           //console.log(`SKU: ${producto.sku}`);
           //console.log(`Cantidad: ${producto.cantidad}`);
-          console.log('------------------------');
+          //console.log('------------------------');
         });
     }
     
@@ -134,7 +139,7 @@ export class Carrito {
         this.productos.forEach((producto) => {
           //console.log(`SKU: ${producto.sku}`);
           //console.log(`Cantidad: ${producto.cantidad}`);
-          console.log('------------------------');
+          //console.log('------------------------');
         });
     }
 
