@@ -8,7 +8,7 @@ const productosDelSuper = new ProductosDelSuper();
 //productosDelSuper = ProductosDelSuper.loadProducts();
 productosDelSuper.loadProducts();
 // Lista los productos del super
-//productosDelSuper.listProducts();
+productosDelSuper.listProducts();
 
 {
 // Función que busca un producto por su sku en "la base de datos"
@@ -47,10 +47,10 @@ productosDelSuper.loadProducts();
 
 // Se crea un carrito y agregan productos al carrito
 const carrito = new Carrito();
-carrito.agregarProducto('WE328NJ', 4, productosDelSuper);
-carrito.agregarProducto('KS944RUR', 10, productosDelSuper);
-carrito.agregarProducto('WE328NJ', 1, productosDelSuper);
-carrito.eliminarProducto('WE328NJ', 1, productosDelSuper);
+await carrito.agregarProducto('WE328NJ', 4, productosDelSuper);
+await carrito.agregarProducto('KS944RUR', 10, productosDelSuper);
+await carrito.agregarProducto('WE328NJ', 1, productosDelSuper);
+// await carrito.eliminarProducto('WE328NJ', 1, productosDelSuper);
 // carrito.agregarProducto('FN312PPE', 2, productosDelSuper);
 // //const cerveza = new Producto('PV332MJ', 'Cerveza', 20, 'bebidas');
 // //const arroz = new Producto('XX92LKI', 'Arroz', 7, 'alimentos', 20);
