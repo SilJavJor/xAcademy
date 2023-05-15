@@ -5,52 +5,36 @@ import { Carrito } from './js/cart.js';
 
 // Creacion de productosDelSuper, su carga
 const productosDelSuper = new ProductosDelSuper();
-//productosDelSuper = ProductosDelSuper.loadProducts();
 productosDelSuper.loadProducts();
 // Lista los productos del super
 productosDelSuper.listProducts();
-
-{
-// Función que busca un producto por su sku en "la base de datos"
-// window.findProductBySkuInProductOfSuper = function (sku) {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             const foundProduct = productosDelSuper.productos.find(product => product.sku === sku);
-//             if (foundProduct) {
-//                 console.log("Producto encontrado...", foundProduct);
-
-//                 resolve(foundProduct);
-//             } else {
-//                 reject(`Producto ${sku} no encontrado...`);
-//             }
-//         }, 1500);
-//     });
-// }
-
-
-// Función que busca un producto por su sku en "la base de datos"
-// findProductBySkuInProductOfSuper = function (sku) {
-//     return new Promise((resolve, reject) => {
-//         setTimeout(() => {
-//             const foundProduct = productosDelSuper.productos.find(product => product.sku === sku);
-//             if (foundProduct) {
-//                 resolve(foundProduct);
-//             } else {
-//                 reject(`Producto ${sku} no encontrado.......`);
-//             }
-//         }, 1500);
-//     });
-// }
-}
-
-//setTimeout(1500)
 
 // Se crea un carrito y agregan productos al carrito
 const carrito = new Carrito();
 await carrito.agregarProducto('WE328NJ', 4, productosDelSuper);
 await carrito.agregarProducto('KS944RUR', 10, productosDelSuper);
 await carrito.agregarProducto('WE328NJ', 1, productosDelSuper);
-// await carrito.eliminarProducto('WE328NJ', 1, productosDelSuper);
+
+// function eliminar(promesa){
+//     promesa.then(result => {
+//         console.log(result);
+//     }).catch(function (err) {
+//         console.log(err);
+//     });
+// }
+
+// let promesaJabon =
+carrito.eliminarProducto('WE328NJ', 1);
+// eliminar(promesaJabon)
+// let promesaQueso = 
+carrito.eliminarProducto('KS944RUR', 10);
+// promesaQueso.then(result => {
+//     console.log(result);
+// }).catch(function (err) {
+//     console.log(err);
+// });
+
+
 // carrito.agregarProducto('FN312PPE', 2, productosDelSuper);
 // //const cerveza = new Producto('PV332MJ', 'Cerveza', 20, 'bebidas');
 // //const arroz = new Producto('XX92LKI', 'Arroz', 7, 'alimentos', 20);

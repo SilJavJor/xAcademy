@@ -22,16 +22,12 @@ export class Carrito {
     if (sku && cantidad) {
       // Busco el producto en el carrito
       console.log(`Buscando el producto ${sku} en el carrito...`);
-      const productoExistenteEnCarrito = this.productos.find(
-        (producto) => producto.sku === sku
-      );
+      const productoExistenteEnCarrito = this.productos.find((producto) => producto.sku === sku);
 
       // Verifico si el producto se encuentera en el carrito sumo la cantidad|
       if (productoExistenteEnCarrito) {
         // Si el producto es encontrado
-        console.log(
-          `El producto ${productoExistenteEnCarrito.sku} se encuentra en el carrito...`
-        );
+        console.log(`El producto ${productoExistenteEnCarrito.sku} se encuentra en el carrito...`);
 
         this.updateQuantityPrice(productoExistenteEnCarrito, cantidad);
       } else {
@@ -59,7 +55,7 @@ export class Carrito {
     }
   }
 
-  async eliminarProducto(sku, cantidad) {
+  eliminarProducto(sku, cantidad) {
     return new Promise((resolve, reject) => {
       // Busco el producto en el carrito
       console.log(`Buscando el producto ${sku} en el carrito...`);
@@ -81,7 +77,11 @@ export class Carrito {
       } else {
         reject(`El producto con SKU ${sku} no existe en el carrito.`);
       }
-    });
+    }).then(result => {
+      console.log(result);
+  }).catch(function (err) {
+      console.log(err);
+  });
   }
 
   updateQuantityPrice(productoExistenteEnCarrito, cantidad) {
