@@ -24,9 +24,9 @@ export class Carrito {
       console.log(`Buscando el producto ${sku} en el carrito...`);
       const productoExistenteEnCarrito = this.productos.find((producto) => producto.sku === sku);
 
-      // Verifico si el producto se encuentera en el carrito sumo la cantidad|
+      // Verifico si el producto se encuentera en el carrito
       if (productoExistenteEnCarrito) {
-        // Si el producto es encontrado
+        // Si el producto es encontrado sumo las cantidades
         console.log(`El producto ${productoExistenteEnCarrito.sku} se encuentra en el carrito...`);
 
         this.updateQuantityPrice(productoExistenteEnCarrito, cantidad);
@@ -34,13 +34,11 @@ export class Carrito {
         try {
           // Busco el producto en el super
           console.log(`Buscando el producto en la base del super... ${sku}`);
-          const productoExistenteEnSuper =
-            await productosDelSuper.findProductBySku(sku);
+          const productoExistenteEnSuper = await productosDelSuper.findProductBySku(sku);
 
           // Verifico si el producto se encuentra en el producto del supermercado
-          // Agrego el producto
           if (productoExistenteEnSuper) {
-            // Agrega un Producto
+            // Agrego el producto
             this.addProduct(productoExistenteEnSuper, cantidad);
           } else {
             console.log(`No se encontró el producto ${sku} en el supermercado.`
@@ -57,31 +55,32 @@ export class Carrito {
 
   eliminarProducto(sku, cantidad) {
     return new Promise((resolve, reject) => {
-      // Busco el producto en el carrito
-      console.log(`Buscando el producto ${sku} en el carrito...`);
-      const productoExistenteCarrito = this.productos.find(
-        (producto) => producto.sku === sku
-      );
+      if (sku && cantidad) {
+        // Busco el producto en el carrito
+        console.log(`Buscando el producto ${sku} en el carrito...`);
+        const productoExistenteCarrito = this.productos.find((producto) => producto.sku === sku);
 
-      if (productoExistenteCarrito) {
-        if (cantidad < productoExistenteCarrito.cantidad) {
-          productoExistenteCarrito.cantidad -= cantidad;
+        if (productoExistenteCarrito) {
+          if (cantidad < productoExistenteCarrito.cantidad) {
+            productoExistenteCarrito.cantidad -= cantidad;
+          } else {
+            const index = this.productosEnCarritoCarrito.indexOf(productoExistenteCarrito);
+
+            this.productosEnCarritoCarrito.splice(index, 1);
+          }
+
+          resolve("Producto eliminado del carrito existosamente.");
         } else {
-          const index = this.productosEnCarritoCarrito.indexOf(
-            productoExistenteCarrito
-          );
-          this.productosEnCarritoCarrito.splice(index, 1);
+          reject(`El producto con SKU ${sku} inexistente en el carrito.`);
         }
-
-        resolve("Producto eliminado del carrito.");
       } else {
-        reject(`El producto con SKU ${sku} no existe en el carrito.`);
+        console.log("El sku y la cantidad deben ser especificados");
       }
     }).then(result => {
       console.log(result);
-  }).catch(function (err) {
+    }).catch(function (err) {
       console.log(err);
-  });
+    });
   }
 
   updateQuantityPrice(productoExistenteEnCarrito, cantidad) {
@@ -107,17 +106,14 @@ export class Carrito {
     );
 
     // Creo un producto nuevo
-    const nuevoProducto = new ProductoEnCarrito(
-      productoExistenteEnSuper.sku,
-      productoExistenteEnSuper.nombre,
-      cantidad
-    );
+    const nuevoProducto = new ProductoEnCarrito( productoExistenteEnSuper.sku,
+      productoExistenteEnSuper.nombre, cantidad );
 
     // Agrego el producto
     this.productos.push(nuevoProducto);
     this.precioTotal += nuevoProducto.precio * cantidad;
 
-    //
+    // Falta verificar el tema de las categorias se deberia verificar si la categoria existe no se agrega
     this.categorias.push(nuevoProducto.categoria);
 
     // Agregado Exitosamente

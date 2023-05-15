@@ -20,30 +20,15 @@ export class ProductosDelSuper {
     const jabon = new Producto("WE328NJ", "Jabon", 4, "Higiene", 20);
     const polenta = new Producto("JK332MJ", "Polenta", 20, "Alimentos");
     const detergente = new Producto("XX92LKI", "Detergente", 7, "Lipieza", 30);
-    // const tomate = new Producto("UI999TY", "Tomate", 5, "Alimentos");
-    // const mayonesa = new Producto("RT324GD", "Mayonesa", 9, "Alimentos");
-    // const desodorante = new Producto("OL883YE",
-    //   "Desodorante",
-    //   3,
-    //   "Higiene",
-    //   50
-    // );
-    // const esponja = new Producto("WE328NJ", "Esponja", 4, "Limpieza", 3);
-    // const isopo = new Producto("WE328NJ", "Isopo", 4, "Perfumeria", 3);
+    const tomate = new Producto("JS999TY", "Tomate", 5, "Alimentos");
+    const mayonesa = new Producto("LM324SD", "Mayonesa", 9, "Alimentos");
+    const desodorante = new Producto("OD883TH", "Desodorante", 3, "Higiene", 50);
+    const esponja = new Producto("JG328JN", "Esponja", 4, "Limpieza", 3);
+    const isopo = new Producto("WE328NJ", "Isopo", 4, "Perfumeria", 3);
 
     // Carga el array de productos.
-    this.productos = [
-      queso,
-      gaseosa,
-      cerveza,
-      arroz,
-      fideos,
-      lavandina,
-      shampoo,
-      jabon,
-      polenta,
-      detergente,
-    ];
+    this.productos = [queso, gaseosa, cerveza, arroz, fideos, lavandina, shampoo, jabon,
+      polenta, detergente, tomate, mayonesa, desodorante, esponja, isopo];
   }
 
   listProducts() {
@@ -71,7 +56,9 @@ export class ProductosDelSuper {
 
           resolve(foundProduct);
         } else {
-          reject(`Producto ${sku} no encontrado...`);
+          console.log(`Producto ${sku} no encontrado...`);
+
+          reject(foundProduct);
         }
       }, 1500);
     });
