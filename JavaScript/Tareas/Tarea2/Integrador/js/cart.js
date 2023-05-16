@@ -29,6 +29,7 @@ export class Carrito {
         // Si el producto es encontrado sumo las cantidades
         console.log(`El producto ${productoExistenteEnCarrito.sku} se encuentra en el carrito...`);
 
+        // 
         this.updateQuantity(productoExistenteEnCarrito, cantidad);
       } else {
         try {
@@ -92,10 +93,11 @@ export class Carrito {
     //this.preciototal -= productoExistenteEnCarrito.precio * cantidad;
     //this.precioTotal -= calculaPrecio(productoExistenteEnCarrito.precio, cantidad);
     // Calculo el precio
-    this.precioTotal -= this.calculaPrecio(productoExistenteEnSuper.precio, cantidad);
+    this.precioTotal -= this.calculaPrecioTotalDelProducto(productoExistenteEnCarrito.producto.precio, cantidad);
 
     productoExistenteEnCarrito.cantidad += cantidad;
     //this.precioTotal += productoExistenteEnCarrito.precio * productoExistenteEnCarrito.cantidad;
+    this.precioTotal += this.calculaPrecioTotalDelProducto(productoExistenteEnCarrito.precio, cantidad);
 
     // Agregado Exitosamente
     console.log(`Modificando cantidad del producto ${productoExistenteEnCarrito.sku} exitosamente...`);
@@ -113,7 +115,7 @@ export class Carrito {
     this.productos.push(nuevoProducto);
 
     // Calculo el precio
-    this.precioTotal += this.calculaPrecio(productoExistenteEnSuper.precio, cantidad);
+    this.precioTotal += this.calculaPrecioTotalDelProducto(productoExistenteEnSuper.precio, cantidad);
 
     // Falta verificar el tema de las categorias se deberia verificar si la categoria existe no se agrega
     this.categorias.push(productoExistenteEnSuper.categoria);
@@ -123,7 +125,7 @@ export class Carrito {
   }
 
 
-  calculaPrecio(precioDelProducto, cantidad) {
+  calculaPrecioTotalDelProducto(precioDelProducto, cantidad) {
     //
     let precio = 0;
 
