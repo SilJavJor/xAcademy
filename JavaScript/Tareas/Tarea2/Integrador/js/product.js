@@ -7,7 +7,7 @@ export class Producto {
     precio;         // Su precio
     stock;          // Cantidad disponible en stock
 
-    constructor(sku, nombre, precio, categoria, stock) {
+    constructor(sku, nombre, categoria, precio, stock) {
         this.sku = sku;
         this.nombre = nombre;
         this.categoria = categoria;

@@ -10,21 +10,21 @@ export class ProductosDelSuper {
 
   loadProducts() {
     // Simula la carga de los productos del super desde una fuente de datos.
-    const queso = new Producto("KS944RUR", "Queso", 10, "Lacteos", 4);
-    const gaseosa = new Producto("FN312PPE", "Gaseosa", 5, "Bebidas", 6);
-    const cerveza = new Producto("PV332MJ", "Cerveza", 20, "Bebidas");
-    const arroz = new Producto("XX92LKI", "Arroz", 7, "Alimentos", 20);
-    const fideos = new Producto("UI999TY", "Fideos", 5, "Alimentos");
-    const lavandina = new Producto("RT324GD", "Lavandina", 9, "Limpieza");
-    const shampoo = new Producto("OL883YE", "Shampoo", 3, "Higiene", 50);
-    const jabon = new Producto("WE328NJ", "Jabon", 4, "Higiene", 20);
-    const polenta = new Producto("JK332MJ", "Polenta", 20, "Alimentos");
-    const detergente = new Producto("XX92LKI", "Detergente", 7, "Lipieza", 30);
-    const tomate = new Producto("JS999TY", "Tomate", 5, "Alimentos");
-    const mayonesa = new Producto("LM324SD", "Mayonesa", 9, "Alimentos");
-    const desodorante = new Producto("OD883TH", "Desodorante", 3, "Higiene", 50);
-    const esponja = new Producto("JG328JN", "Esponja", 4, "Limpieza", 3);
-    const isopo = new Producto("WE328NJ", "Isopo", 4, "Perfumeria", 3);
+    const queso = new Producto("KS944RUR", "Queso", "Lacteos", 10, 4);
+    const gaseosa = new Producto("FN312PPE", "Gaseosa", "Bebidas", 5, 6);
+    const cerveza = new Producto("PV332MJ", "Cerveza", "Bebidas", 20,);
+    const arroz = new Producto("XX92LKI", "Arroz", "Alimentos", 7, 20);
+    const fideos = new Producto("UI999TY", "Fideos", "Alimentos", 5);
+    const lavandina = new Producto("RT324GD", "Lavandina", "Limpieza", 9);
+    const shampoo = new Producto("OL883YE", "Shampoo", "Higiene", 3, 50);
+    const jabon = new Producto("WE328NJ", "Jabon", "Higiene", 4, 20);
+    const polenta = new Producto("JK332MJ", "Polenta", "Alimentos", 20);
+    const detergente = new Producto("XX92LKI", "Detergente", "Lipieza", 7, 30);
+    const tomate = new Producto("JS999TY", "Tomate", "Alimentos", 5);
+    const mayonesa = new Producto("LM324SD", "Mayonesa", "Alimentos", 9);
+    const desodorante = new Producto("OD883TH", "Desodorante", "Higiene", 3, 50);
+    const esponja = new Producto("JG328JN", "Esponja", "Limpieza", 4, 3);
+    const isopo = new Producto("WE328NJ", "Isopo", "Perfumeria", 4, 3);
 
     // Carga el array de productos.
     this.productos = [queso, gaseosa, cerveza, arroz, fideos, lavandina, shampoo, jabon,

@@ -29,7 +29,7 @@ export class Carrito {
         // Si el producto es encontrado sumo las cantidades
         console.log(`El producto ${productoExistenteEnCarrito.sku} se encuentra en el carrito...`);
 
-        this.updateQuantityPrice(productoExistenteEnCarrito, cantidad);
+        this.updateQuantity(productoExistenteEnCarrito, cantidad);
       } else {
         try {
           // Busco el producto en el super
@@ -63,6 +63,8 @@ export class Carrito {
         if (productoExistenteCarrito) {
           if (cantidad < productoExistenteCarrito.cantidad) {
             productoExistenteCarrito.cantidad -= cantidad;
+
+            this.preciototal -= productoExistenteCarrito.precio * cantidad;
           } else {
             const index = this.productosEnCarritoCarrito.indexOf(productoExistenteCarrito);
 
@@ -83,47 +85,62 @@ export class Carrito {
     });
   }
 
-  updateQuantityPrice(productoExistenteEnCarrito, cantidad) {
+  updateQuantity(productoExistenteEnCarrito, cantidad) {
     // Modificando la cantidad, el precio y el precio total
-    console.log(`Modificando el cantidad y precio...`);
+    console.log(`Modificando el cantidad...`);
 
-    this.preciototal -= productoExistenteEnCarrito.precio * cantidad;
+    //this.preciototal -= productoExistenteEnCarrito.precio * cantidad;
+    //this.precioTotal -= calculaPrecio(productoExistenteEnCarrito.precio, cantidad);
+    // Calculo el precio
+    this.precioTotal -= this.calculaPrecio(productoExistenteEnSuper.precio, cantidad);
 
     productoExistenteEnCarrito.cantidad += cantidad;
-    this.preciototal +=
-      productoExistenteEnCarrito.precio * productoExistenteEnCarrito.cantidad;
+    //this.precioTotal += productoExistenteEnCarrito.precio * productoExistenteEnCarrito.cantidad;
 
     // Agregado Exitosamente
-    console.log(
-      `Modificando cantidad de producto ${productoExistenteEnCarrito.sku} agregado exitosamente...`
-    );
+    console.log(`Modificando cantidad del producto ${productoExistenteEnCarrito.sku} exitosamente...`);
   }
 
   addProduct(productoExistenteEnSuper, cantidad) {
     //
-    console.log(
-      `Agregando producto  ${productoExistenteEnSuper.sku} cantidad  ${cantidad}`
-    );
+    console.log(`Agregando producto  ${productoExistenteEnSuper.sku} cantidad  ${cantidad}`);
 
     // Creo un producto nuevo
     const nuevoProducto = new ProductoEnCarrito( productoExistenteEnSuper.sku,
-      productoExistenteEnSuper.nombre, cantidad );
+       productoExistenteEnSuper.nombre, cantidad );
 
     // Agrego el producto
     this.productos.push(nuevoProducto);
-    this.precioTotal += nuevoProducto.precio * cantidad;
+
+    // Calculo el precio
+    this.precioTotal += this.calculaPrecio(productoExistenteEnSuper.precio, cantidad);
 
     // Falta verificar el tema de las categorias se deberia verificar si la categoria existe no se agrega
-    this.categorias.push(nuevoProducto.categoria);
+    this.categorias.push(productoExistenteEnSuper.categoria);
 
     // Agregado Exitosamente
     console.log(`Producto  ${nuevoProducto.sku} agregado exitosamente...`);
   }
 
+
+  calculaPrecio(precioDelProducto, cantidad) {
+    //
+    let precio = 0;
+
+    // Modificando la cantidad, el precio y el precio total
+    console.log(`Calcualndo precio total...`);
+
+    // Calculo el precio por el producto
+    precio = precioDelProducto * cantidad;
+
+    return precio;
+  }
+
   listProducts() {
     console.log("Productos en el carrito:");
-    this.productos.forEach((productos) => {
+    this.productos.forEach((producto) => {
       console.log(`SKU: ${producto.sku}`);
+      console.log(`SKU: ${producto.nombre}`);
       console.log(`Cantidad: ${producto.cantidad}`);
       console.log("------------------------");
     });
@@ -132,7 +149,7 @@ export class Carrito {
   listCategories() {
     console.log("Categorias en el carrito:");
     this.productos.forEach((producto) => {
-      console.log(`SKU: ${producto.sku}`);
+      console.log(`SKU: ${producto.categoria}`);
       console.log(`Cantidad: ${producto.cantidad}`);
       console.log("------------------------");
     });
