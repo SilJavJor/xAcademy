@@ -48,15 +48,15 @@ export class ProductosDelSuper {
   findProductBySku(sku) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const foundProduct = this.productos.find(
-          (product) => product.sku === sku
-        );
+        console.log(`Buscando el producto  ${sku} en la base del super...`);
+        const foundProduct = this.productos.find((product) => product.sku === sku);
+
         if (foundProduct) {
           console.log(`Producto ${sku} encontrado...`, foundProduct);
 
           resolve(foundProduct);
         } else {
-          console.log(`Producto ${sku} no encontrado...`);
+          console.log(`No se encontró el producto ${sku} en el supermercado.`);
 
           reject(foundProduct);
         }

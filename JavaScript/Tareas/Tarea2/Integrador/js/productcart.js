@@ -1,14 +1,14 @@
+
+import { ProductoBase } from "./productobase.js";
+
 // Clase ProductoEnCarrirto
 // Cada producto que se agrega al carrito es creado con esta clase
-
-export class ProductoEnCarrito {
-    sku;       // Identificador único del producto
-    nombre;    // Su nombre
+export class ProductoEnCarrito extends ProductoBase {
     cantidad;  // Cantidad de este producto en el carrito
 
-    constructor(sku, nombre, cantidad) {
-        this.sku = sku;
-        this.nombre = nombre;
+    constructor(sku, nombre, precio, cantidad) {
+        super(sku, nombre, precio);
+
         this.cantidad = cantidad;
     }
 }

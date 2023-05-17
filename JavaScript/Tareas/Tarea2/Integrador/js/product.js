@@ -1,17 +1,16 @@
 // Clase Producto
+import { ProductoBase } from "./productobase.js";
+
 // Cada producto que vende el super es creado con esta clase
-export class Producto {
-    sku;            // Identificador único del producto
-    nombre;         // Su nombre
+export class Producto extends ProductoBase {
     categoria;      // Categoría a la que pertenece este producto
-    precio;         // Su precio
     stock;          // Cantidad disponible en stock
 
     constructor(sku, nombre, categoria, precio, stock) {
-        this.sku = sku;
-        this.nombre = nombre;
+        super(sku, nombre, precio);
+
         this.categoria = categoria;
-        this.precio = precio;
+        // this.precio = precio;
 
         // Se deben validar todos los atributos 
         // Se valida que sea un valor valido

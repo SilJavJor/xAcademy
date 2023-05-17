@@ -1,5 +1,7 @@
 // Importacion de la Clase ProductoEnCarrito
 import { ProductoEnCarrito } from "./productcart.js";
+
+// Importacion de la Clase ProductoEnSuper
 import { ProductosDelSuper } from "./productsuper.js";
 
 // Clase Carrito
@@ -21,33 +23,28 @@ export class Carrito {
     // Si lo valores con validos
     if (sku && cantidad) {
       // Busco el producto en el carrito
-      console.log(`Buscando el producto ${sku} en el carrito...`);
-      const productoExistenteEnCarrito = this.productos.find((producto) => producto.sku === sku);
+      const productoExistenteEnCarrito = this.findProductBySku(sku);
 
       // Verifico si el producto se encuentera en el carrito
       if (productoExistenteEnCarrito) {
         // Si el producto es encontrado sumo las cantidades
         console.log(`El producto ${productoExistenteEnCarrito.sku} se encuentra en el carrito...`);
 
-        // 
+        // Modifico la cantidad
         this.updateQuantity(productoExistenteEnCarrito, cantidad);
       } else {
-        try {
-          // Busco el producto en el super
-          console.log(`Buscando el producto en la base del super... ${sku}`);
-          const productoExistenteEnSuper = await productosDelSuper.findProductBySku(sku);
+          try {
+            // Busco el producto en el super
+            const productoExistenteEnSuper = await productosDelSuper.findProductBySku(sku);
 
-          // Verifico si el producto se encuentra en el producto del supermercado
-          if (productoExistenteEnSuper) {
-            // Agrego el producto
-            this.addProduct(productoExistenteEnSuper, cantidad);
-          } else {
-            console.log(`No se encontró el producto ${sku} en el supermercado.`
-            );
+            // Verifico si el producto se encuentra en el producto del supermercado
+            if (productoExistenteEnSuper) {
+              // Agrego el producto
+              this.addProduct(productoExistenteEnSuper, cantidad);
+            }
+          } catch (error) {
+            console.log(error);
           }
-        } catch (error) {
-          console.log(error);
-        }
       }
     } else {
       console.log("El sku y la cantidad deben ser especificados");
@@ -57,27 +54,37 @@ export class Carrito {
   eliminarProducto(sku, cantidad) {
     return new Promise((resolve, reject) => {
       if (sku && cantidad) {
-        // Busco el producto en el carrito
-        console.log(`Buscando el producto ${sku} en el carrito...`);
-        const productoExistenteCarrito = this.productos.find((producto) => producto.sku === sku);
+      // Busco el producto en el carrito
+      const productoExistenteEnCarrito = this.findProductBySku(sku);
 
-        if (productoExistenteCarrito) {
-          if (cantidad < productoExistenteCarrito.cantidad) {
-            productoExistenteCarrito.cantidad -= cantidad;
+      // Verifico si el producto se encuentera en el carrito
+      if (productoExistenteEnCarrito) {
+          if (cantidad < productoExistenteEnCarrito.cantidad) {
+            // Modifico la cantidad
+            // this.preciototal -= productoExistenteCarrito.precio * cantidad;
+            productoExistenteEnCarrito.cantidad -= cantidad;
 
-            this.preciototal -= productoExistenteCarrito.precio * cantidad;
+            // Resto la cantida actual al el precio
+            this.precioTotal -= this.calculaPrecioTotalDelProducto(productoExistenteEnCarrito.precio, 
+              productoExistenteEnCarrito.cantidad);
           } else {
-            const index = this.productosEnCarritoCarrito.indexOf(productoExistenteCarrito);
+            productoExistenteEnCarrito.cantidad -= cantidad;
 
-            this.productosEnCarritoCarrito.splice(index, 1);
+            // Resto la cantida actual al el precio
+            this.precioTotal -= this.calculaPrecioTotalDelProducto(productoExistenteEnCarrito.precio, 
+              productoExistenteEnCarrito.cantidad);
+
+            const index = this.productoExistenteEnCarrito.indexOf(productoExistenteCarrito);
+
+            this.productoExistenteEnCarrito.splice(index, 1);
           }
 
           resolve("Producto eliminado del carrito existosamente.");
         } else {
-          reject(`El producto con SKU ${sku} inexistente en el carrito.`);
+          reject(`El producto con SKU ${sku} es inexistente en el carrito.`);
         }
       } else {
-        console.log("El sku y la cantidad deben ser especificados");
+        console.log("El SKU y la cantidad deben ser especificados");
       }
     }).then(result => {
       console.log(result);
@@ -90,26 +97,26 @@ export class Carrito {
     // Modificando la cantidad, el precio y el precio total
     console.log(`Modificando el cantidad...`);
 
-    //this.preciototal -= productoExistenteEnCarrito.precio * cantidad;
-    //this.precioTotal -= calculaPrecio(productoExistenteEnCarrito.precio, cantidad);
-    // Calculo el precio
-    this.precioTotal -= this.calculaPrecioTotalDelProducto(productoExistenteEnCarrito.producto.precio, cantidad);
+    // Resto la cantida actual al el precio
+    this.precioTotal -= this.calculaPrecioTotalDelProducto(productoExistenteEnCarrito.precio, cantidad);
 
+    // Modifico la cantidad
     productoExistenteEnCarrito.cantidad += cantidad;
-    //this.precioTotal += productoExistenteEnCarrito.precio * productoExistenteEnCarrito.cantidad;
+    
+    // Sumo la cantidad actual al cprecio
     this.precioTotal += this.calculaPrecioTotalDelProducto(productoExistenteEnCarrito.precio, cantidad);
 
     // Agregado Exitosamente
-    console.log(`Modificando cantidad del producto ${productoExistenteEnCarrito.sku} exitosamente...`);
+    console.log(`La cantidad el producto ${productoExistenteEnCarrito.sku} fue modificada exitosamente...`);
   }
 
   addProduct(productoExistenteEnSuper, cantidad) {
-    //
+    // Agregando el producto
     console.log(`Agregando producto  ${productoExistenteEnSuper.sku} cantidad  ${cantidad}`);
 
     // Creo un producto nuevo
     const nuevoProducto = new ProductoEnCarrito( productoExistenteEnSuper.sku,
-       productoExistenteEnSuper.nombre, cantidad );
+       productoExistenteEnSuper.nombre, productoExistenteEnSuper.precio, cantidad );
 
     // Agrego el producto
     this.productos.push(nuevoProducto);
@@ -117,13 +124,12 @@ export class Carrito {
     // Calculo el precio
     this.precioTotal += this.calculaPrecioTotalDelProducto(productoExistenteEnSuper.precio, cantidad);
 
-    // Falta verificar el tema de las categorias se deberia verificar si la categoria existe no se agrega
+    ////////// Falta verificar el tema de las categorias se deberia verificar si la categoria existe no se agrega
     this.categorias.push(productoExistenteEnSuper.categoria);
 
     // Agregado Exitosamente
     console.log(`Producto  ${nuevoProducto.sku} agregado exitosamente...`);
   }
-
 
   calculaPrecioTotalDelProducto(precioDelProducto, cantidad) {
     //
@@ -138,11 +144,24 @@ export class Carrito {
     return precio;
   }
 
+  findProductBySku(sku) {
+    console.log(`Buscando el producto ${sku} en el carrito...`);
+    const foundProduct = this.productos.find((product) => product.sku === sku);
+
+    if (foundProduct) {
+      console.log(`Producto ${sku} encontrado...`, foundProduct);
+    } else {
+      console.log(`No se encontró el producto ${sku} en el carrito...`, foundProduct);
+    }
+ 
+    return foundProduct;
+  }
+  
   listProducts() {
     console.log("Productos en el carrito:");
     this.productos.forEach((producto) => {
       console.log(`SKU: ${producto.sku}`);
-      console.log(`SKU: ${producto.nombre}`);
+      console.log(`Descripcion: ${producto.nombre}`);
       console.log(`Cantidad: ${producto.cantidad}`);
       console.log("------------------------");
     });
