@@ -125,7 +125,7 @@ export class Carrito {
     this.precioTotal += this.calculaPrecioTotalDelProducto(productoExistenteEnSuper.precio, cantidad);
 
     ////////// Falta verificar el tema de las categorias se deberia verificar si la categoria existe no se agrega
-    this.categorias.push(productoExistenteEnSuper.categoria);
+    // this.categorias.push(productoExistenteEnSuper.categoria);
 
     // Agregado Exitosamente
     console.log(`Producto  ${nuevoProducto.sku} agregado exitosamente...`);
@@ -155,6 +155,17 @@ export class Carrito {
     }
  
     return foundProduct;
+  }
+
+  addCategories(productoExistenteEnSuper) {
+    console.log(`Buscando la categoria ${productoExistenteEnSuper.sku} en el carrito...`);
+    const foundCaProduct = this.productoExistenteEnSuper.find((product) => product.sku === sku);
+
+    if (foundProduct) {
+      console.log(`Categoria encontrada...`);
+    } else {
+      console.log(`No se encontró la categoria...`);
+    }
   }
   
   listProducts() {

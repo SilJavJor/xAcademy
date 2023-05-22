@@ -55,6 +55,3 @@ carrito.listProducts();
 
 // Muestra el precio total
 carrito.listPrecioTotal();
-
-
-
