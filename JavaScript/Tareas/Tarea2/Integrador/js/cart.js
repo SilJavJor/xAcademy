@@ -126,6 +126,7 @@ export class Carrito {
 
     ////////// Falta verificar el tema de las categorias se deberia verificar si la categoria existe no se agrega
     // this.categorias.push(productoExistenteEnSuper.categoria);
+    this.addCategories(productoExistenteEnSuper.categoria);
 
     // Agregado Exitosamente
     console.log(`Producto  ${nuevoProducto.sku} agregado exitosamente...`);
@@ -157,15 +158,20 @@ export class Carrito {
     return foundProduct;
   }
 
-  addCategories(productoExistenteEnSuper) {
-    console.log(`Buscando la categoria ${productoExistenteEnSuper.sku} en el carrito...`);
-    const foundCaProduct = this.productoExistenteEnSuper.find((product) => product.sku === sku);
+  addCategories(category) {
+    console.log(`Buscando la categoria ${category} en el carrito...`);
+    const foundCategory = this.categorias.find((categoria) => categoria.categoria === category);
 
-    if (foundProduct) {
-      console.log(`Categoria encontrada...`);
-    } else {
-      console.log(`No se encontró la categoria...`);
-    }
+  if (foundCategory) {
+    console.log(`Categoria encontrada...`);
+  } else {
+    console.log(`No se encontró la categoria...`);
+    console.log(`Agregando categoria ${category}...`);
+
+    this.categorias.push(category);
+  }
+ 
+    // return foundCategory;
   }
   
   listProducts() {
