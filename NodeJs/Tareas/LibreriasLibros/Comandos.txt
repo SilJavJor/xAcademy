@@ -1,0 +1,17 @@
+npm init -y
+npm init -y
+npm init -y
+npm init
+
+npm install express sequelize passport passport-local bcrypt jsonwebtoken
+npm install express sequelize sequelize-cli passport passport-local bcrypt
+npm install express sequelize sequelize-cli passport passport-local bcrypt
+npm install express sequelize
+
+npm install --save-dev nodemon
+
+
+npm run dev
+
+
+node app.js

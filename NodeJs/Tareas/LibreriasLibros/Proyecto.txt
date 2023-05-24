@@ -1,0 +1,8 @@
+src: Carpeta que contiene el código fuente de tu aplicación.
+src/controllers: Carpeta para los controladores que manejan la lógica de tu aplicación.
+src/models: Carpeta para los modelos de datos de tu aplicación.
+src/routes: Carpeta para las rutas y endpoints de tu API.
+src/index.js: Archivo principal que inicia tu aplicación.
+database.js: Archivo que contiene la configuración y conexión a la base de datos.
+package.json: Archivo de configuración de tu proyecto.
+README.md: Archivo con la documentación y descripción de tu proyecto.
