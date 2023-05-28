@@ -1,0 +1,33 @@
+Carpeta que contendrá los controladores de Express.
+- controllers/
+  - libraryController.js
+  - bookController.js
+  - userController.js
+
+Carpeta que contendrá los modelos de Sequelize.
+- models/
+  - library.js
+  - book.js
+  - user.js
+
+
+Carpeta que contendrá las rutas de Express.
+- routes/
+  - libraryRoutes.js
+  - bookRoutes.js
+  - userRoutes.js
+
+
+Carpeta que contendrá los middlewares de autenticación.
+- middleware/
+  - authentication.js
+
+Carpeta que contendrá los archivos CSV para cargar los datos iniciales.
+
+
+- config/
+  - database.js
+  - passport.js
+
+
+- app.js
